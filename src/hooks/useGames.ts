@@ -12,6 +12,7 @@ export interface Game {            //interface for the game object provided by t
     name: string,
     background_image: string,
     parent_platforms: { platform: Platform }[],
+    metacritic: number,
 }
 
 interface FetchGamesResponse {      //interface for the response based on the api documentation
@@ -23,18 +24,26 @@ const useGames = () => {
     
     const [games, setGames] = useState<Game[]>([]) //A list of game objects
     const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     
     useEffect(() => {
         const controller = new AbortController();
-        
+
+        setIsLoading(true)
         apiClient.get<FetchGamesResponse>('/games', {signal: controller.signal})  //sends request to base url + /games and requires object form FetchGamesResponse
-          .then(result => setGames(result.data.results))
-          .catch(error => {if (error instanceof CanceledError) return; setError(error.message)}) //if error, set error to error message
+          .then((result) => {
+            setGames(result.data.results);
+            setIsLoading(false);
+            })
+          .catch((error) => {
+            if (error instanceof CanceledError) return; 
+            setError(error.message);
+            setIsLoading(false)}); //if error, set error to error message
 
           return () => controller.abort(); //abort the fetch request if the component is unmounted
     }, [])
 
-    return {games, error};
+    return {games, error, isLoading};
 }
 
 export default useGames;
