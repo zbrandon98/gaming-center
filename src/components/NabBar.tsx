@@ -7,7 +7,6 @@ interface Props {
   onSearch: (searchText: string) => void;
 }
 
-
 const NabBar = ({onSearch}: Props) => {
   return (
     <HStack padding="10px">
