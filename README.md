@@ -1,27 +1,14 @@
-# React + TypeScript + Vite
+# Demonstration
+You can find a demonstration of this code working at:
+https://gaming-center.vercel.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Introduction
+This program uses a combination of React, TypeScript, Vite, ChakraUI, and RAWG's API (https://rawg.io).
+The frontend displays grid of 'gamecards' which contain am image, title, platform, and rating. It also
+displays a list of genres on the left and a search bar on top.
 
-Currently, two official plugins are available:
+The information for the gamecards is fetched from the API. The API is also used to filter and update the
+grid. A neat little addition is that when the information is being getched, a skeleton gamecard is 
+shown instead of a blank scree, a qol feature. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
